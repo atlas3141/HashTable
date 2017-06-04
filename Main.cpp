@@ -1,9 +1,9 @@
 #include <iostream>
 #include "HashTable.h"
 #include <cstdlib>
-
-
-
+//Josh Howell Hash Table
+//A program that stores a bunch of student data though a hash table
+//Also generates random students from two .txts
 
 int main(){
   srand (time(NULL));

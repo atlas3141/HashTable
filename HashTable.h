@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include "Node.h"
-
+//A class for a hash table that holds students
 class HashTable{
  public:
   HashTable();
@@ -13,7 +13,6 @@ class HashTable{
   void add(Student* student);
   void expand();
   int getKey(Student* student);
-  int getKey(Student* student, int tableSize);
   Node** array;
   int size;
 };

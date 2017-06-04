@@ -1,5 +1,3 @@
-
-
 #include "HashTable.h"
 #include <fstream>
 #include <cstdlib>
@@ -7,14 +5,19 @@
 
 using namespace std;
 
-HashTable::HashTable(){
+
+//HashTable.h, A hashTable class for students that grows, adds, deletes and randomly adds
+HashTable::HashTable(){ 
+  //constructor, initializes junk
   array = new Node*[100];
   size = 100;
 }
 void HashTable::add(){
+  //adds if its just a basic student
   add(new Student());
 }
 void HashTable::remove(int id){
+  //looks through the array and deletes a node if it has the same id
   for (int i = 0; i < size; i++){
     Node* current = array[i];
     if (current){
@@ -37,6 +40,9 @@ void HashTable::remove(int id){
   }
 }
 void HashTable::addRandom(int newCount){
+  //opens up two files of first and last names
+  //picks a random name gpa and ID and creates a student off  of it
+
   char* firsts[60];
   char* seconds[60];
   ifstream firstStream;
@@ -81,6 +87,7 @@ void HashTable::addRandom(int newCount){
   }
 }
 void HashTable::print(){
+  //iterates through the entire array and prints
   for (int i = 0; i < size; i++){
     Node* current = array[i];
     while(current){
@@ -108,6 +115,7 @@ void HashTable::add(Student* student){
   }
 }
 void HashTable::expand(){
+  //doubles the size of the array +1 to give it an offset
   Node** old = array;
   array = new Node*[size*2 + 1];
   int oldSize = size;
@@ -122,10 +130,7 @@ void HashTable::expand(){
   delete old;
 }
 int HashTable::getKey(Student* student){
+  //Simple Hash function
   int toReturn = student->getId();
   return toReturn %size;
-}
-int HashTable::getKey(Student* student, int tableSize){
-  int toReturn = student->getId();
-  return toReturn % tableSize;
 }

@@ -19,7 +19,7 @@ Student:: Student(int newId, char* first, char* last, float newGpa){
 
 }
 Student::Student(){
-
+  //lets you build the student right there
   lastName = new char[30];
   firstName = new char[30];
 

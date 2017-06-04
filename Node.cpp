@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "Node.h"
-
+//A node for a linked list that holds a student pointer
 
 using namespace std;
 
