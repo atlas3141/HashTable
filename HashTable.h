@@ -7,7 +7,7 @@ class HashTable{
   HashTable();
   void add();
   void remove(int id);
-  void addRandom();
+  void addRandom(int number);
   void print();
  private:
   void add(Student* student);

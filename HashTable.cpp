@@ -1,7 +1,11 @@
 
 
 #include "HashTable.h"
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
+using namespace std;
 
 HashTable::HashTable(){
   array = new Node*[100];
@@ -32,8 +36,49 @@ void HashTable::remove(int id){
     }
   }
 }
-void HashTable::addRandom(){
-  
+void HashTable::addRandom(int newCount){
+  char* firsts[60];
+  char* seconds[60];
+  ifstream firstStream;
+  ifstream secondStream;
+  firstStream.open("firsts.txt");
+  secondStream.open("seconds.txt");
+  if (firstStream.is_open() && secondStream.is_open()){
+    int i = 0;
+    char newInput[30];
+    firstStream >> newInput;
+    firsts[i] = strdup(newInput);
+    i++;
+    while(firstStream.peek() != '\n' && !firstStream.eof()){
+      firstStream >> newInput;
+      firsts[i] = strdup(newInput);
+      i++;
+      
+    }
+    int j = 0;
+    secondStream >> newInput;
+    seconds[j] = strdup(newInput);
+    j++;
+    while(secondStream.peek() != '\n' && !secondStream.eof()){
+      secondStream >> newInput;    
+      seconds[j] = strdup(newInput);
+      j++;
+    }
+    int id;
+    char* first;
+    char* second;
+    float gpa;
+    
+    
+    for(int k = 0; k < newCount; k++){
+      id = 1000 + rand()%9000;
+      first = firsts[rand()%i];
+      second = seconds[rand()%j];
+      gpa = float(rand()%400)/100;
+      add(new Student(id,first,second,gpa));
+ 
+    }
+  }
 }
 void HashTable::print(){
   for (int i = 0; i < size; i++){
@@ -67,7 +112,6 @@ void HashTable::expand(){
   array = new Node*[size*2 + 1];
   int oldSize = size;
   size = size*2+1;
-  cout << "newSize" << endl;
   for (int i = 0; i < oldSize; i++){
     Node* current = old[i];
     while(current){

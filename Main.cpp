@@ -1,11 +1,12 @@
 #include <iostream>
 #include "HashTable.h"
-
+#include <cstdlib>
 
 
 
 
 int main(){
+  srand (time(NULL));
   //main program loop
   HashTable* table = new HashTable();
   char input[128];
@@ -30,7 +31,11 @@ int main(){
       table->print();
     }
     else if(input[0] == 'r'){
-      table->addRandom();
+      int number;
+      cout << "How many students do you want?" << endl;
+      cin >> number;
+      cin.ignore();
+      table->addRandom(number);
     }
     else if(input[0] == 'q'){
       running = false;
