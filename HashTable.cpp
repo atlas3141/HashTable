@@ -43,8 +43,8 @@ void HashTable::addRandom(int newCount){
   //opens up two files of first and last names
   //picks a random name gpa and ID and creates a student off  of it
 
-  char* firsts[60];
-  char* seconds[60];
+  char* firsts[100];
+  char* seconds[100];
   ifstream firstStream;
   ifstream secondStream;
   firstStream.open("firsts.txt");
@@ -96,7 +96,7 @@ void HashTable::print(){
     }
   }
 }
-void HashTable::add(Student* student){
+void HashTable::add(Student* student, bool checkCollisions){
   int key = getKey(student);
   if(array[key]){
     Node* current = array[key];
@@ -106,7 +106,7 @@ void HashTable::add(Student* student){
       current = current->getNext();
     }
     current->setNext(new Node(student));
-    if(collisionCount >= 3){
+    if(collisionCount >= 3 && checkCollisions){
       expand();
     }
   }
@@ -123,7 +123,7 @@ void HashTable::expand(){
   for (int i = 0; i < oldSize; i++){
     Node* current = old[i];
     while(current){
-      add(current->data());
+      add(current->data(),false);
       current = current->getNext();
     }
   }

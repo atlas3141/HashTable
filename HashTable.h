@@ -10,7 +10,7 @@ class HashTable{
   void addRandom(int number);
   void print();
  private:
-  void add(Student* student);
+  void add(Student* student,bool checkCollisions = true);
   void expand();
   int getKey(Student* student);
   Node** array;
