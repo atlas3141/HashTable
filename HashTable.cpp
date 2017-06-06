@@ -22,7 +22,7 @@ void HashTable::remove(int id){
     Node* current = array[i];
     if (current){
       if (current->data()->getId() == id){
-	array[i] = NULL;
+	array[i] = current->getNext();
 	delete current;
       }
       else{
